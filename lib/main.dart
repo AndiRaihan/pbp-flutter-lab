@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:counter_7/data.dart';
+import 'package:counter_7/form.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,13 +26,13 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Program Counter'),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+  const MyHomePage({super.key});
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -41,7 +43,7 @@ class MyHomePage extends StatefulWidget {
   // used by the build method of the State. Fields in a Widget subclass are
   // always marked "final".
 
-  final String title;
+  final String title = "Program Counter";
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -67,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  void _decrementCounter () {
+  void _decrementCounter() {
     setState(() {
       if (_counter > 0) {
         _counter--;
@@ -75,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  void _setText () {
+  void _setText() {
     setState(() {
       if (_counter % 2 != 0) {
         _text = const Text(
@@ -84,8 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
             color: Colors.blue,
           ),
         );
-      }
-      else {
+      } else {
         _text = const Text(
           "GENAP",
           style: TextStyle(
@@ -109,6 +110,43 @@ class _MyHomePageState extends State<MyHomePage> {
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
+      ),
+      drawer: Drawer(
+        child: Column(
+          children: [
+            // Menambahkan clickable menu
+            ListTile(
+              title: const Text('counter_7'),
+              onTap: () {
+                // Route menu ke halaman utama
+                Navigator.pop(
+                  context,
+                  MaterialPageRoute(builder: (context) => const MyHomePage()),
+                );
+              },
+            ),
+            ListTile(
+              title: const Text('Tambah Budget'),
+              onTap: () {
+                // Route menu ke halaman form
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const MyFormPage()),
+                );
+              },
+            ),
+            ListTile(
+              title: const Text('Data Budget'),
+              onTap: () {
+                // Route menu ke halaman data
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const MyDataPage()),
+                );
+              },
+            ),
+          ],
+        ),
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
@@ -138,29 +176,29 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      floatingActionButton: Row (
+      floatingActionButton: Row(
         children: [
           const SizedBox(width: 32),
-          if (_counter > 0) FloatingActionButton(
-            onPressed: () {
-              _decrementCounter();
-              _setText();
-            },
-            backgroundColor: const Color(0xFF40C4FF),
-            tooltip: 'Decrement',
-            child: const Icon(Icons.remove),
-          ),
+          if (_counter > 0)
+            FloatingActionButton(
+              onPressed: () {
+                _decrementCounter();
+                _setText();
+              },
+              backgroundColor: const Color(0xFF40C4FF),
+              tooltip: 'Decrement',
+              child: const Icon(Icons.remove),
+            ),
           const Flexible(fit: FlexFit.tight, child: SizedBox()),
           FloatingActionButton(
-              onPressed: () {
-          _incrementCounter();
-          _setText();
-          },
-          backgroundColor: const Color(0xFF40C4FF), //
+            onPressed: () {
+              _incrementCounter();
+              _setText();
+            },
+            backgroundColor: const Color(0xFF40C4FF), //
             tooltip: 'Increment',
             child: const Icon(Icons.add),
           ),
-
         ],
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
