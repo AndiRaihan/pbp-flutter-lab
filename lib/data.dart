@@ -10,19 +10,8 @@ class MyDataPage extends StatefulWidget {
 }
 
 class _MyDataPageState extends State<MyDataPage> {
-  final _formKey = GlobalKey<FormState>();
-
-  bool _isNumeric(String? s) {
-    if (s == null) {
-      return false;
-    }
-    return double.tryParse(s) != null;
-  }
-
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Form Budget'),
@@ -81,7 +70,8 @@ class _MyDataPageState extends State<MyDataPage> {
                       child: Text(
                         Budget.budgets[index].judul,
                         style: const TextStyle(
-                          fontSize: 30,
+                          fontSize: 32,
+
                         ),
                       ),
                     ),
@@ -93,7 +83,8 @@ class _MyDataPageState extends State<MyDataPage> {
                           child: Text(
                             Budget.budgets[index].nominal.toString(),
                             style: const TextStyle(
-                              fontSize: 20,
+                              fontSize: 18,
+
                             ),
                           ),
                         ),
@@ -104,7 +95,7 @@ class _MyDataPageState extends State<MyDataPage> {
                           child: Text(
                             Budget.budgets[index].jenis,
                             style: const TextStyle(
-                              fontSize: 20,
+                              fontSize: 18,
                             ),
                           ),
                         ),

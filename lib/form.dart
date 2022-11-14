@@ -11,25 +11,19 @@ class MyFormPage extends StatefulWidget {
 
 class Budget {
   String judul ;
-  int nominal;
+  double nominal;
   String jenis;
   static List<Budget> budgets = [];
 
-  Budget(String this.judul, int this.nominal, String this.jenis);
+  Budget(String this.judul, double this.nominal, String this.jenis);
 }
 
 class _MyFormPageState extends State<MyFormPage> {
   final _formKey = GlobalKey<FormState>();
   String _judul = "";
-  int _nominal = 0;
-  bool jenjangSarjana = false;
-  bool jenjangDiploma = false;
-  bool jenjangMagister = false;
-  bool jenjangDoktor = false;
-  double umur = 0;
+  double _nominal = 0;
   String? _jenisPemasukan;
   List<String> _listPemasukan = ['Pemasukan', 'Pengeluaran'];
-  bool _nilaiSwitch = false;
 
 
   bool _isNumeric(String? s) {
@@ -145,7 +139,7 @@ class _MyFormPageState extends State<MyFormPage> {
                     onChanged: (String? value) {
                       setState(() {
                         if (_isNumeric(value)) {
-                          _nominal = int.parse(value!);
+                          _nominal = double.parse(value!);
                         }
                       });
                     },
@@ -153,7 +147,7 @@ class _MyFormPageState extends State<MyFormPage> {
                     onSaved: (String? value) {
                       setState(() {
                         if (_isNumeric(value)) {
-                          _nominal = int.parse(value!);
+                          _nominal = double.parse(value!);
                         }
                       });
                     },
@@ -162,7 +156,8 @@ class _MyFormPageState extends State<MyFormPage> {
                       if (value == null || value.isEmpty) {
                         return 'Judul tidak boleh kosong!';
                       } else if (!_isNumeric(value)) {
-                        return 'Nominal harus berupa angka';
+                        return 'Nominal harus berupa angka valid (Untuk desimal '
+                            'gunakan "." jangan ",")';
                       }
                       return null;
                     },
