@@ -71,7 +71,6 @@ class _MyDataPageState extends State<MyDataPage> {
                         Budget.budgets[index].judul,
                         style: const TextStyle(
                           fontSize: 32,
-
                         ),
                       ),
                     ),
@@ -84,7 +83,6 @@ class _MyDataPageState extends State<MyDataPage> {
                             Budget.budgets[index].nominal.toString(),
                             style: const TextStyle(
                               fontSize: 18,
-
                             ),
                           ),
                         ),

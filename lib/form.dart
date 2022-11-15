@@ -10,21 +10,20 @@ class MyFormPage extends StatefulWidget {
 }
 
 class Budget {
-  String judul ;
-  double nominal;
+  String judul;
+  int nominal;
   String jenis;
   static List<Budget> budgets = [];
 
-  Budget(String this.judul, double this.nominal, String this.jenis);
+  Budget(String this.judul, int this.nominal, String this.jenis);
 }
 
 class _MyFormPageState extends State<MyFormPage> {
   final _formKey = GlobalKey<FormState>();
   String _judul = "";
-  double _nominal = 0;
+  int _nominal = 0;
   String? _jenisPemasukan;
   List<String> _listPemasukan = ['Pemasukan', 'Pengeluaran'];
-
 
   bool _isNumeric(String? s) {
     if (s == null) {
@@ -139,7 +138,7 @@ class _MyFormPageState extends State<MyFormPage> {
                     onChanged: (String? value) {
                       setState(() {
                         if (_isNumeric(value)) {
-                          _nominal = double.parse(value!);
+                          _nominal = int.parse(value!);
                         }
                       });
                     },
@@ -147,7 +146,7 @@ class _MyFormPageState extends State<MyFormPage> {
                     onSaved: (String? value) {
                       setState(() {
                         if (_isNumeric(value)) {
-                          _nominal = double.parse(value!);
+                          _nominal = int.parse(value!);
                         }
                       });
                     },
@@ -156,8 +155,7 @@ class _MyFormPageState extends State<MyFormPage> {
                       if (value == null || value.isEmpty) {
                         return 'Judul tidak boleh kosong!';
                       } else if (!_isNumeric(value)) {
-                        return 'Nominal harus berupa angka valid (Untuk desimal '
-                            'gunakan "." jangan ",")';
+                        return 'Nominal harus berupa angka valid (Harus bilangan bulat)';
                       }
                       return null;
                     },
@@ -165,8 +163,8 @@ class _MyFormPageState extends State<MyFormPage> {
                 ),
                 // Dropdown jenis budget
                 Container(
-                  width: width/4,
-                  child: ButtonTheme (
+                  width: width / 4,
+                  child: ButtonTheme(
                     alignedDropdown: true,
                     child: DropdownButtonFormField(
                       hint: const Text("Pilih Jenis"),
@@ -194,7 +192,7 @@ class _MyFormPageState extends State<MyFormPage> {
                 ),
 
                 SizedBox(
-                  height: height/1.9,
+                  height: height / 1.9,
                 ),
                 // TODO Atur ukuran button biar gedean dikit
                 // Button untuk submit
@@ -204,7 +202,8 @@ class _MyFormPageState extends State<MyFormPage> {
                   ),
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      Budget currentBudget = Budget(_judul, _nominal, _jenisPemasukan!);
+                      Budget currentBudget =
+                          Budget(_judul, _nominal, _jenisPemasukan!);
                       Budget.budgets.add(currentBudget);
                       _formKey.currentState?.reset();
                       showDialog(
@@ -218,10 +217,11 @@ class _MyFormPageState extends State<MyFormPage> {
                             elevation: 15,
                             child: ListView(
                               padding:
-                              const EdgeInsets.only(top: 20, bottom: 20),
+                                  const EdgeInsets.only(top: 20, bottom: 20),
                               shrinkWrap: true,
                               children: const <Widget>[
-                                Center(child: Text('Budget Berhasil Ditambahkan')),
+                                Center(
+                                    child: Text('Budget Berhasil Ditambahkan')),
                               ],
                             ),
                           );
