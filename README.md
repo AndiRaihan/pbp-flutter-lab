@@ -1,3 +1,5 @@
+Untuk pergi ke Tugas 8 klik di [sini](#tugas-8-pbp)
+
 # Tugas 7 PBP
 Tugas ini diselesaikan oleh Andi Muhamad Dzaky Raihan, NPM 2106631412, kode Asdos FRA.
 
@@ -105,3 +107,285 @@ Fungsi `setState()` memberi tahu _framework_ Flutter bahwa sesuatu telah berubah
     * Untuk mengubah text dan counter jika tombol dipencet, saya membuat 3 fungsi yakni `_incrementCounter()` untuk increment counter, `_decrementCounter()` untuk decrement counter (hanya akan decrement jika `_counter` > 0), dan `_setText()` untuk mengatur tulisan ganjil/genap dan warnanya. Fungsi increment & decrement akan dipanggil oleh tombol yang namanya sesuai dan akan merubah state dari `_counter`. 
     
         Untuk Tulisan ganjil/genap, saya memanfaatkan sebuah variabel bernama `_text` yang berisikan objek dari `Text` yang ditampilkan di layar. Variabel `_text` akan diubah oleh method `_setText()` dan method ini akan dipanggil setiap tombol increment atau decrement diklik. Dengan demikian, text yang ditampilkan (ganjil/genap dan warnanya) akan sesuai dengan nilai dari counternya
+
+# Tugas 8 PBP
+
+### 1. Jelaskan perbedaan Navigator.push dan Navigator.pushReplacement.
+Misalkan navigation stack memiliki urutan sebagai berikut `a b c`. Setelah itu kita ingin routing lagi ke `d`. Berikut hasilnya jika menggunakan:
+* Navigator.push --> Hasilnya adalah `a b c d` (Menambahkan route baru ke dalam stack)
+* Navigator.pushReplacement --> Hasilnya adalah `a b d` (Menggantikan elemen paling atas dengan route baru)
+
+### 2. Sebutkan widget apa saja yang kamu pakai di proyek kali ini dan jelaskan fungsinya.
+* `Drawer`: Digunakan untuk memberikan akses ke berbagai tujuan dan fungsionalitas yang disajikan di aplikasi Anda
+* `Form`: Berfungsi sebagai container form, yang membolehkan kita untuk mengumpulkan dan validasi berbagai field form 
+* `Card`: Selembar _material_ yang digunakan untuk merepresentasikan suatu informasi terkait
+* `ListView`: sekumpulan widget yang bisa di-_scroll_ dan disusun linear
+* `TextFormField`: Sebuah form field yang mengandung text field, digunakan untuk input text
+* `DropdownButtonFormField`: Sebuah form field yang mengandung DropdownButton. Digunakan untuk input menggunakan dropdown button
+* `TextButton`: Suatu tombol yang bisa diberikan text
+
+
+### 3. Sebutkan jenis-jenis event yang ada pada flutter
+* `onChanged` : Akan muncul ketika widget mengalami perubahan
+* `onPressed` : Akan muncul ketika sebuah button dipencet
+* `onSaved`   : Akan muncul ketika suatu form disimpan
+* `onTap`     : Akan muncul ketika suatu widget dipencet
+
+### 4. Jelaskan bagaimana cara kerja Navigator dalam "mengganti" halaman dari aplikasi Flutter
+Pada dasarnya, flutter navigasi pada flutter menggunakan konsep _stack_. Halaman yang sedang dilihat oleh user berada di paling atas _stack_ navigasi. Ketika ingin mengganti halaman, maka navigator bisa merubah _top of stack_ dari _stack_ halamannya baik melalui push (menambah halaman baru di atas _stack_), pop (Menghapus halaman di _top of stack_), dan operasi-operasi lainnya.
+
+### 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas.
+
+* Menambahkan drawer/hamburger menu pada app yang telah dibuat sebeumnya dan Menambahkan tiga tombol navigasi pada drawer/hamburger..
+
+    Menambahkan kode berikut di awal file (seperti pada lab sebelumnya), untuk tombol navigasi tinggal tambahin ListTile lagi:
+    ```dart
+    drawer: Drawer(
+        child: Column(
+          children: [
+            // Menambahkan clickable menu
+            ListTile(
+              title: const Text('counter_7'),
+              onTap: () {
+                // Route menu ke halaman utama
+                Navigator.pop(
+                  context,
+                  MaterialPageRoute(builder: (context) => const MyHomePage()),
+                );
+              },
+            ),
+            ListTile(
+              title: const Text('Tambah Budget'),
+              onTap: () {
+                // Route menu ke halaman form
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const MyFormPage()),
+                );
+              },
+            ),
+            ListTile(
+              title: const Text('Data Budget'),
+              onTap: () {
+                // Route menu ke halaman data
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const MyDataPage()),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+    ```
+* Menambahkan halaman form
+    * Menambahkan elemen input dengan tipe data String berupa judul budget. : Menambahkan text form field seperti berikut:
+    ```dart
+    TextFormField(
+                    decoration: InputDecoration(
+                      hintText: "Contoh: Beli Sate Pacil",
+                      labelText: "Judul",
+                      // Menambahkan circular border agar lebih rapi
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5.0),
+                      ),
+                    ),
+                    // TODO Implement onChanged dan onSaved
+                    // Menambahkan behavior saat nama diketik
+                    onChanged: (String? value) {
+                      setState(() {
+                        _judul = value!;
+                      });
+                    },
+                    // Menambahkan behavior saat data disimpan
+                    onSaved: (String? value) {
+                      setState(() {
+                        _judul = value!;
+                      });
+                    },
+                    // Validator sebagai validasi form
+                    validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Judul tidak boleh kosong!';
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+    ```
+    *  Menambahkan elemen input dengan tipe data int berupa nominal budget.
+    : Menambahkan text form field seperti berikut:
+    ```dart
+    TextFormField(
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      hintText: "Contoh: 15000",
+                      labelText: "Nominal",
+                      // Menambahkan circular border agar lebih rapi
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5.0),
+                      ),
+                    ),
+                    // TODO Implement onChanged dan onSaved
+                    // Menambahkan behavior saat nama diketik
+                    onChanged: (String? value) {
+                      setState(() {
+                        if (_isNumeric(value)) {
+                          _nominal = int.parse(value!);
+                        }
+                      });
+                    },
+                    // Menambahkan behavior saat data disimpan
+                    onSaved: (String? value) {
+                      setState(() {
+                        if (_isNumeric(value)) {
+                          _nominal = int.parse(value!);
+                        }
+                      });
+                    },
+                    // Validator sebagai validasi form
+                    validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Judul tidak boleh kosong!';
+                      } else if (!_isNumeric(value)) {
+                        return 'Nominal harus berupa angka valid (Harus bilangan bulat)';
+                      }
+                      return null;
+                    },
+                  ),
+    ```
+    * Menambahkan elemen dropdown yang berisi tipe budget dengan pilihan pemasukan dan pengeluaran.: Saya menambahkan DropdownButtonField, menggunakan placeholder, dan memberikan opsinya seperti berikut :
+    ```dart
+    ButtonTheme(
+                    alignedDropdown: true,
+                    child: DropdownButtonFormField(
+                      hint: const Text("Pilih Jenis"),
+                      value: _jenisPemasukan,
+                      icon: const Icon(Icons.keyboard_arrow_down),
+                      items: _listPemasukan.map((String items) {
+                        return DropdownMenuItem(
+                          value: items,
+                          child: Text(items),
+                        );
+                      }).toList(),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          _jenisPemasukan = newValue!;
+                        });
+                      },
+                      validator: (String? value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Silahkan Pilih Jenis!';
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+    ```
+    * Menambahkan button untuk menyimpan budget. : Untuk menyimpan budget, saya membuat sebuah class budget yang parameternya adalah imput-input dari field. Selain itu, class budget juga menyimpan atribut static yang menyimpan seluruh budget yang pernah dibuat. Berikut kode dari budget:
+    ```dart
+    class Budget {
+        String judul;
+        int nominal;
+        String jenis;
+        static List<Budget> budgets = [];
+
+        Budget(String this.judul, int this.nominal, String this.jenis);
+    }
+    ```
+    Berikut adalah kode dari button:
+    ```dart
+    TextButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Colors.blue),
+                  ),
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      Budget currentBudget =
+                          Budget(_judul, _nominal, _jenisPemasukan!);
+                      Budget.budgets.add(currentBudget);
+                      _formKey.currentState?.reset();
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return Dialog(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            insetPadding: const EdgeInsets.all(10),
+                            elevation: 15,
+                            child: ListView(
+                              padding:
+                                  const EdgeInsets.only(top: 20, bottom: 20),
+                              shrinkWrap: true,
+                              children: const <Widget>[
+                                Center(
+                                    child: Text('Budget Berhasil Ditambahkan')),
+                              ],
+                            ),
+                          );
+                        },
+                      );
+                    }
+                  },
+                  child: const Text(
+                    "Simpan",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+    ```
+* Menambahkan halaman data budget
+
+    Untuk menampilkan data-data dari budget, saya memanfaatkan listview builder untuk looping dan memasukkan seluruh data dari budget. Berikut kodenya:
+    ```dart
+    ListView.builder(
+            itemCount: Budget.budgets.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Card(
+                elevation: 3,
+                margin: const EdgeInsets.all(5),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Text Judul
+                    Container(
+                      padding: const EdgeInsets.only(
+                          top: 8, left: 15, right: 15, bottom: 8),
+                      child: Text(
+                        Budget.budgets[index].judul,
+                        style: const TextStyle(
+                          fontSize: 32,
+                        ),
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.only(
+                              top: 8, left: 15, right: 15, bottom: 8),
+                          child: Text(
+                            Budget.budgets[index].nominal.toString(),
+                            style: const TextStyle(
+                              fontSize: 18,
+                            ),
+                          ),
+                        ),
+                        const Flexible(fit: FlexFit.tight, child: SizedBox()),
+                        Container(
+                          padding: const EdgeInsets.only(
+                              top: 8, left: 15, right: 15, bottom: 8),
+                          child: Text(
+                            Budget.budgets[index].jenis,
+                            style: const TextStyle(
+                              fontSize: 18,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              );
+            }),
+      ),
+    ```
