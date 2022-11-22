@@ -3,6 +3,9 @@ import 'package:counter_7/model/myWatchListModel.dart';
 import 'package:counter_7/page/form.dart';
 import 'package:counter_7/widget/NavBar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
 
 class MyDetailPage extends StatefulWidget {
   const MyDetailPage({super.key, required this.modelWatchList});
@@ -47,9 +50,7 @@ class _MyDetailPageState extends State<MyDetailPage> {
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
                 ),
                 Text(
-                  model.fields.releaseDate
-                      .toString()
-                      .replaceAll("00:00:00.000", ""),
+                  DateFormat.yMMMd().format(model.fields.releaseDate),
                   style: const TextStyle(fontSize: 14),
                 ),
               ],

@@ -5,9 +5,12 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-List<MyWatchListModel> myWatchListFromJson(String str) => List<MyWatchListModel>.from(json.decode(str).map((x) => MyWatchListModel.fromJson(x)));
+List<MyWatchListModel> myWatchListFromJson(String str) =>
+    List<MyWatchListModel>.from(
+        json.decode(str).map((x) => MyWatchListModel.fromJson(x)));
 
-String myWatchListToJson(List<MyWatchListModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String myWatchListToJson(List<MyWatchListModel> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class MyWatchListModel {
   MyWatchListModel({
@@ -20,21 +23,22 @@ class MyWatchListModel {
   int pk;
   Fields fields;
 
-  factory MyWatchListModel.fromJson(Map<String, dynamic> json) => MyWatchListModel(
-    model: modelValues.map[json["model"]],
-    pk: json["pk"],
-    fields: Fields.fromJson(json["fields"]),
-  );
+  factory MyWatchListModel.fromJson(Map<String, dynamic> json) =>
+      MyWatchListModel(
+        model: modelValues.map[json["model"]],
+        pk: json["pk"],
+        fields: Fields.fromJson(json["fields"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "model": modelValues.reverse[model],
-    "pk": pk,
-    "fields": fields.toJson(),
-  };
+        "model": modelValues.reverse[model],
+        "pk": pk,
+        "fields": fields.toJson(),
+      };
 
   static Future<List<MyWatchListModel>> fetchMyWatchList() async {
     var url =
-    Uri.parse('http://lab-1-pbp-saya.herokuapp.com/mywatchlist/json/');
+        Uri.parse('http://lab-1-pbp-saya.herokuapp.com/mywatchlist/json/');
     var response = await http.get(
       url,
       headers: {
@@ -74,27 +78,27 @@ class Fields {
   String review;
 
   factory Fields.fromJson(Map<String, dynamic> json) => Fields(
-    watched: json["watched"],
-    title: json["title"],
-    rating: json["rating"],
-    releaseDate: DateTime.parse(json["release_date"]),
-    review: json["review"],
-  );
+        watched: json["watched"],
+        title: json["title"],
+        rating: json["rating"],
+        releaseDate: DateTime.parse(json["release_date"]),
+        review: json["review"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "watched": watched,
-    "title": title,
-    "rating": rating,
-    "release_date": "${releaseDate.year.toString().padLeft(4, '0')}-${releaseDate.month.toString().padLeft(2, '0')}-${releaseDate.day.toString().padLeft(2, '0')}",
-    "review": review,
-  };
+        "watched": watched,
+        "title": title,
+        "rating": rating,
+        "release_date":
+            "${releaseDate.year.toString().padLeft(4, '0')}-${releaseDate.month.toString().padLeft(2, '0')}-${releaseDate.day.toString().padLeft(2, '0')}",
+        "review": review,
+      };
 }
 
 enum Model { MYWATCHLIST_WATCHLISTMOVIES }
 
-final modelValues = EnumValues({
-  "mywatchlist.watchlistmovies": Model.MYWATCHLIST_WATCHLISTMOVIES
-});
+final modelValues = EnumValues(
+    {"mywatchlist.watchlistmovies": Model.MYWATCHLIST_WATCHLISTMOVIES});
 
 class EnumValues<T> {
   Map<String, T> map;
