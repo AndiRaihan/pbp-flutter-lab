@@ -1,5 +1,7 @@
-Untuk pergi ke Tugas 8 klik di [sini](#tugas-8-pbp)
-
+Quick Nav Tugas:
+* [Tugas 7](#tugas-7-pbp)
+* [Tugas 8](#tugas-8-pbp)
+* [Tugas 9](#tugas-9-pbp)
 # Tugas 7 PBP
 Tugas ini diselesaikan oleh Andi Muhamad Dzaky Raihan, NPM 2106631412, kode Asdos FRA.
 
@@ -389,3 +391,32 @@ Pada dasarnya, flutter navigasi pada flutter menggunakan konsep _stack_. Halaman
             }),
       ),
     ```
+
+# Tugas 9 PBP
+### 1. Apakah bisa kita melakukan pengambilan data JSON tanpa membuat model terlebih dahulu? Jika iya, apakah hal tersebut lebih baik daripada membuat model sebelum melakukan pengambilan data JSON?
+Singkatnya ya, kita bisa melakukan pengambilan data JSON tanpa membuat model terlebih dahulu. Akan tetapi, lebih buruk daripada membuat model sebelum pengambilan data. Jika kita membuat model terlebih dahulu, penyimpanan data akan lebih terstruktur sehingga pengambilan data yang sudah disimpan akan lebih mudah. Intinya, jika buat model dulu akan lebih mudah penyimpanan dan pengaksesan datanya.
+
+### 2. Sebutkan widget apa saja yang kamu pakai di proyek kali ini dan jelaskan fungsinya.
+* `Container`, `Center`, `Column`, `Row`, `Padding`: Widget yang digunakan untuk mengatur posisi dari widget-widget lainnya
+1. `Text`: Sebuah widget yang menampilkan dan memberikan _styling_ pada text. Digunakan untuk menambilkan text ganjil/genap dan counter klik
+2. `SizedBox`: Sebuah box dengan ukuran tertentu. Digunakan untuk memberikan spasi/padding di antara tombol
+* `FutureBuilder`: Widget yang membangun dirinya sendiri berdasarkan _snapshot_ terakhir interaksinya dengan sebuah `Future`
+* `CircularProgressIndicator`: Widget berupa indikator lingkaran yang berputar. Digunakan untuk menandakan aplikasinya sedang bekerja (Dalam konteks ini menandakan data belum berhasil diambil)
+* `InkWell`: Sebuah area kotak dari _material_ yang dapat menanggapi sentuhan (Digunakan untuk menambahkan fungsi pencet pada card/container)
+* `Checkbox`: Wiget berupa checkbox. Digunakan untuk menandakan dan mengubah status _watched_
+* `Flexible`: Sebuah widget yang mengendalikan bagaimana sebuah `Row`, `Column`, atau `Flex` _flexes_. Widget ini digunakan untuk membesarkan ukuran `SizedBox` sehingga memberikan spasi full antara 2 tombol increment dan decrement 
+* `Card`: Selembar _material_ yang digunakan untuk merepresentasikan suatu informasi terkait
+* `ListView`: sekumpulan widget yang bisa di-_scroll_ dan disusun linear
+* `TextButton`: Suatu tombol yang bisa diberikan text
+* `Drawer`: Digunakan untuk memberikan akses ke berbagai tujuan dan fungsionalitas yang disajikan di aplikasi Anda
+
+### 3. Jelaskan mekanisme pengambilan data dari json hingga dapat ditampilkan pada Flutter.
+1. Menambahkan dependency `http` ke proyek
+2. Membuat model sesuai dengan respons dari data yang berasal dari web service yang digunakan (Opsional tapi direkomendasikan).
+3. Membuat http request ke web service menggunakan dependency `http`
+4. Decode data yang sudah diambil dan jadikan ke bentuk JSON
+5. Data dalam bentuk JSON ini ubah ke dalam bentuk model yang sudah dibuat di langkah 2
+6. Menampilkan data yang telah dikonversi ke aplikasi dengan `FutureBuilder` atau cara lainnya yang Anda inginkan
+
+### 4. Jelaskan bagaimana cara kamu mengimplementasikan _checklist_ di atas.
+1. 

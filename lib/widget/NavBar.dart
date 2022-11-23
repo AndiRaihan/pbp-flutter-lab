@@ -51,7 +51,8 @@ class NavBar extends StatelessWidget {
               // Route menu ke halaman data
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => const MyWatchListPage()),
+                MaterialPageRoute(
+                    builder: (context) => const MyWatchListPage()),
               );
             },
           ),

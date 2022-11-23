@@ -1,9 +1,5 @@
 import 'package:counter_7/page/detail.dart';
-import 'package:counter_7/page/form.dart';
-import 'package:counter_7/main.dart';
 import 'package:counter_7/widget/NavBar.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 import 'package:counter_7/model/myWatchListModel.dart';
 import 'package:flutter/material.dart';
 
@@ -15,10 +11,8 @@ class MyWatchListPage extends StatefulWidget {
 }
 
 class _MyWatchListPageState extends State<MyWatchListPage> {
-
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
     return Scaffold(
         appBar: AppBar(
           title: const Text('My Watch List'),

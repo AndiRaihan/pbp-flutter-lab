@@ -1,11 +1,7 @@
-import 'package:counter_7/main.dart';
 import 'package:counter_7/model/myWatchListModel.dart';
-import 'package:counter_7/page/form.dart';
 import 'package:counter_7/widget/NavBar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 
 class MyDetailPage extends StatefulWidget {
   const MyDetailPage({super.key, required this.modelWatchList});
@@ -41,8 +37,8 @@ class _MyDetailPageState extends State<MyDetailPage> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(
-                top: 4, left: 8, right: 8, bottom: 4),
+            padding:
+                const EdgeInsets.only(top: 4, left: 8, right: 8, bottom: 4),
             child: Row(
               children: [
                 const Text(
@@ -57,8 +53,8 @@ class _MyDetailPageState extends State<MyDetailPage> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(
-                top: 4, left: 8, right: 8, bottom: 4),
+            padding:
+                const EdgeInsets.only(top: 4, left: 8, right: 8, bottom: 4),
             child: Row(
               children: [
                 const Text(
@@ -73,8 +69,8 @@ class _MyDetailPageState extends State<MyDetailPage> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(
-    top: 4, left: 8, right: 8, bottom: 4),
+            padding:
+                const EdgeInsets.only(top: 4, left: 8, right: 8, bottom: 4),
             child: Row(
               children: [
                 const Text(
@@ -89,8 +85,8 @@ class _MyDetailPageState extends State<MyDetailPage> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(
-                top: 4, left: 8, right: 8, bottom: 4),
+            padding:
+                const EdgeInsets.only(top: 4, left: 8, right: 8, bottom: 4),
             child: Row(
               children: [
                 const Text(
@@ -108,8 +104,8 @@ class _MyDetailPageState extends State<MyDetailPage> {
           ),
           const Flexible(fit: FlexFit.tight, child: SizedBox()),
           Padding(
-            padding: const EdgeInsets.only(
-                top: 8, left: 8, right: 8, bottom: 8),
+            padding:
+                const EdgeInsets.only(top: 8, left: 8, right: 8, bottom: 8),
             child: TextButton(
               style: TextButton.styleFrom(
                 backgroundColor: Colors.blue,

@@ -15,7 +15,7 @@ class _MyDataPageState extends State<MyDataPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Data Budget'),
+        title: const Text('Detail'),
       ), // Menambahkan drawer menu
       drawer: const NavBar(),
       body: Center(

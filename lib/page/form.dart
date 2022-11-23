@@ -1,5 +1,3 @@
-import 'package:counter_7/main.dart';
-import 'package:counter_7/page/data.dart';
 import 'package:counter_7/widget/NavBar.dart';
 import 'package:flutter/material.dart';
 
