@@ -398,8 +398,8 @@ Singkatnya ya, kita bisa melakukan pengambilan data JSON tanpa membuat model ter
 
 ### 2. Sebutkan widget apa saja yang kamu pakai di proyek kali ini dan jelaskan fungsinya.
 * `Container`, `Center`, `Column`, `Row`, `Padding`: Widget yang digunakan untuk mengatur posisi dari widget-widget lainnya
-1. `Text`: Sebuah widget yang menampilkan dan memberikan _styling_ pada text. Digunakan untuk menambilkan text ganjil/genap dan counter klik
-2. `SizedBox`: Sebuah box dengan ukuran tertentu. Digunakan untuk memberikan spasi/padding di antara tombol
+*  `Text`: Sebuah widget yang menampilkan dan memberikan _styling_ pada text. Digunakan untuk menambilkan text ganjil/genap dan counter klik
+*  `SizedBox`: Sebuah box dengan ukuran tertentu. Digunakan untuk memberikan spasi/padding di antara tombol
 * `FutureBuilder`: Widget yang membangun dirinya sendiri berdasarkan _snapshot_ terakhir interaksinya dengan sebuah `Future`
 * `CircularProgressIndicator`: Widget berupa indikator lingkaran yang berputar. Digunakan untuk menandakan aplikasinya sedang bekerja (Dalam konteks ini menandakan data belum berhasil diambil)
 * `InkWell`: Sebuah area kotak dari _material_ yang dapat menanggapi sentuhan (Digunakan untuk menambahkan fungsi pencet pada card/container)
