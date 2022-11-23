@@ -419,4 +419,9 @@ Singkatnya ya, kita bisa melakukan pengambilan data JSON tanpa membuat model ter
 6. Menampilkan data yang telah dikonversi ke aplikasi dengan `FutureBuilder` atau cara lainnya yang Anda inginkan
 
 ### 4. Jelaskan bagaimana cara kamu mengimplementasikan _checklist_ di atas.
-1. 
+1. Extract widget _drawer_ kemudian menambahkan tombol navigasi pada drawer/hamburger untuk ke halaman mywatchlist.
+2. Membuat model _mywatchlist_ berdasarkan yang sudah dibuat di tugas 3 memanfaatkan **_quicktype_**
+3. Menambahkan depedency http, kemudian membuat fungsi untuk melakukan fetch data dari web heroku tugas 3.
+4. Menampilkan data watchlist secara vertikal dan membuat masing-masing card-nya bisa dipencet (akan routing ke halaman menampilkan detail).
+5. Passing model yang bersesuaian dengan card ke halaman detail. Setelah itu, menampilkan data model yang dipassing itu.
+6. Memasang tombol back untuk kembali ke halaman watchlist
