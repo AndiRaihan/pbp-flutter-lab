@@ -19,7 +19,7 @@ class _MyDetailPageState extends State<MyDetailPage> {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Data Budget'),
+        title: const Text('Detail'),
       ), // Menambahkan drawer menu
       drawer: const NavBar(),
       body: Column(
